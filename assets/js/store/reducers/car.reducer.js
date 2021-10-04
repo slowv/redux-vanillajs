@@ -1,4 +1,4 @@
-import {ADD_CAR} from "../actions/car.action.js";
+import {ADD_CAR, REMOVE_CAR} from "../actions/car.action.js";
 import {createUUID} from "../../core.js";
 
 const init = {
@@ -21,6 +21,11 @@ export default function carReducer(state = init, action, args) {
             return {
                 ...state,
                 cars: [...state.cars, newCar]
+            };
+        case REMOVE_CAR:
+            return {
+                ...state,
+                cars: state.cars.filter(car => car.id !== args[0])
             };
         default:
             return state;
